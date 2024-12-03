@@ -13,22 +13,22 @@ namespace Final_Project
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var username = txtUsername.Text;
-            var password = txtPassword.Text;
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
 
-            var user = Database.Authenticate(username, password);
-
+            User user = Database.Authenticate(username, password);
             if (user != null)
             {
                 MessageBox.Show($"Welcome, {user.Name}!");
-                var dashboard = new MainDashboardForm(user);
+                MainDashboardForm dashboard = new MainDashboardForm(user);
                 dashboard.Show();
-                this.Hide();  // Hide the login form
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("Invalid username or password. Please try again.");
+                MessageBox.Show("Invalid username or password.");
             }
         }
+
     }
 }

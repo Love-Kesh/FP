@@ -5,48 +5,59 @@ namespace Final_Project
 {
     public partial class MainDashboardForm : Form
     {
-        private readonly User loggedInUser;
+        private User loggedInUser;
 
         public MainDashboardForm(User user)
         {
             InitializeComponent();
             loggedInUser = user;
             FormStyling.ApplyFormStyling(this);
+            FormStyling.ApplyButtonStyling(btnTaskList);
+            FormStyling.ApplyButtonStyling(btnHealthMetrics);
+            FormStyling.ApplyButtonStyling(btnCareSchedule);
         }
 
         private void btnViewPets_Click(object sender, EventArgs e)
         {
-            var viewPetsForm = new ViewPetsForm(loggedInUser);
+            ViewPetsForm viewPetsForm = new ViewPetsForm(loggedInUser);  // Pass loggedInUser to the form
             viewPetsForm.Show();
         }
 
+        // Button click event for Add Pets
         private void btnAddPet_Click(object sender, EventArgs e)
         {
-            var addPetsForm = new AddPetForm(loggedInUser);
-            addPetsForm.Show();
-        }
-
-        private void btnHealthMetrics_Click(object sender, EventArgs e)
-        {
-            var healthMetricsForm = new HealthMetricsForm(loggedInUser);
-            healthMetricsForm.Show();
-        }
-
-        private void btnCareSchedule_Click(object sender, EventArgs e)
-        {
-            var careScheduleForm = new CareScheduleForm(loggedInUser);
-            careScheduleForm.Show();
+            AddPetForm addPetForm = new AddPetForm(loggedInUser);  // Pass loggedInUser to the form
+            addPetForm.Show();
         }
 
         private void btnTaskList_Click(object sender, EventArgs e)
         {
-            var taskListForm = new TaskListForm(loggedInUser);
-            taskListForm.Show();
+            TaskListForm taskListForm = new TaskListForm(loggedInUser);
+            taskListForm.ShowDialog(); // Opens TaskListForm
+        }
+
+        private void btnHealthMetrics_Click(object sender, EventArgs e)
+        {
+            HealthMetricsForm healthMetricsForm = new HealthMetricsForm(loggedInUser);
+            healthMetricsForm.ShowDialog(); // Opens HealthMetricsForm
+        }
+
+        private void btnCareSchedule_Click(object sender, EventArgs e)
+        {
+            CareScheduleForm careScheduleForm = new CareScheduleForm(loggedInUser);
+            careScheduleForm.ShowDialog(); // Opens CareScheduleForm
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You have been logged out.");
+            // Clear any session data for the logged-in user
+            loggedInUser = null;
+
+            // Optionally, close the current form and show the Login form again
+            LoginForm loginForm = new LoginForm(); // Assuming you have a LoginForm
+            loginForm.Show();
+
+            // Close the current dashboard
             this.Close();
         }
     }

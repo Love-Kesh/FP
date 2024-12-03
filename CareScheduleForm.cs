@@ -18,12 +18,12 @@ namespace Final_Project
             ApplyCalendarStyling();
             LoadScheduledTasks();
             LoadPetNames();
-            FormStyling.ApplyFormStyling(this);
         }
 
         private void LoadPetNames()
         {
             cmbPetNames.Items.Clear();
+            // Add only the pets from the logged-in user
             foreach (var pet in loggedInUser.Pets)
             {
                 cmbPetNames.Items.Add(pet.Name);
@@ -35,7 +35,7 @@ namespace Final_Project
             var userScheduledDates = loggedInUser.Pets
                 .SelectMany(p => p.Schedule)
                 .Where(s => !string.IsNullOrEmpty(s.Description))
-                .Select(s => s.ScheduledDate)
+                .Select(s => s.Date)
                 .Distinct()
                 .ToArray();
 
@@ -47,13 +47,13 @@ namespace Final_Project
             var selectedDate = monthCalendar.SelectionStart;
             var tasksForSelectedDate = loggedInUser.Pets
                 .SelectMany(p => p.Schedule)
-                .Where(s => s.ScheduledDate.Date == selectedDate.Date)
+                .Where(s => s.Date.Date == selectedDate.Date)
                 .ToList();
 
             if (tasksForSelectedDate.Any())
             {
                 lblScheduledTasks.Text = string.Join(Environment.NewLine, tasksForSelectedDate.Select(s =>
-                    $"{s.Description} for {loggedInUser.Pets.FirstOrDefault(p => p.Schedule.Contains(s))?.Name} on {s.ScheduledDate.Day.ToString("00")}/{s.ScheduledDate.Month.ToString("00")}"
+                    $"{s.Description} for {loggedInUser.Pets.FirstOrDefault(p => p.Schedule.Contains(s))?.Name}"
                 ));
             }
             else
@@ -89,7 +89,7 @@ namespace Final_Project
                 pet.Schedule.Add(new Schedule
                 {
                     Description = txtScheduledTask.Text,
-                    ScheduledDate = dtpScheduledDate.Value
+                    Date = dtpScheduledDate.Value
                 });
 
                 MessageBox.Show($"Scheduled task '{txtScheduledTask.Text}' added to {pet.Name}.");

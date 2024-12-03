@@ -76,7 +76,6 @@
             dataGridView.Name = "dataGridView";
             dataGridView.Size = new Size(416, 231);
             dataGridView.TabIndex = 4;
-            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             // 
             // cmbPetNames
             // 

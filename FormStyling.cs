@@ -4,89 +4,85 @@ using System.Windows.Forms;
 
 namespace Final_Project
 {
+    // Shared class to apply styling to all the forms
     public static class FormStyling
     {
-        // Method to apply the general styling to a form
+        // Define colors for the app's color pallete
+        private static readonly Color BlueGray = ColorTranslator.FromHtml("#90adc6");
+        private static readonly Color Pewter = ColorTranslator.FromHtml("#e9eaec");
+        private static readonly Color Yellow = ColorTranslator.FromHtml("#fad02c");
+        private static readonly Color DarkBlue = ColorTranslator.FromHtml("#333652");
+
         public static void ApplyFormStyling(Form form)
         {
-            // Apply general background color to the form
-            form.BackColor = Color.MistyRose;
+            form.BackColor = Pewter;
 
-            // Apply button styling (flat, color, font)
             foreach (var control in form.Controls)
             {
                 if (control is Button button)
                 {
-                    ApplyButtonStyling(button); // Apply the button styling
+                    ApplyButtonStyling(button);
                 }
                 else if (control is Label label)
                 {
-                    ApplyLabelStyling(label);  // Apply Label styling
+                    ApplyLabelStyling(label);
                 }
                 else if (control is DataGridView dataGridView)
                 {
-                    ApplyDataGridViewStyling(dataGridView);  // Apply DataGridView styling
+                    ApplyDataGridViewStyling(dataGridView);
                 }
                 else if (control is ComboBox comboBox)
                 {
-                    ApplyComboBoxStyling(comboBox);  // Apply ComboBox styling
+                    ApplyComboBoxStyling(comboBox);
                 }
                 else if (control is TextBox textBox)
                 {
-                    ApplyTextBoxStyling(textBox);  // Apply TextBox styling
+                    ApplyTextBoxStyling(textBox);
                 }
             }
         }
 
-        // Method to apply Button styling
+        // Button styling
         public static void ApplyButtonStyling(Button button)
         {
-            button.BackColor = Color.Coral;
+            button.BackColor = BlueGray;
             button.ForeColor = Color.White;
             button.FlatStyle = FlatStyle.Flat;
             button.Font = new Font("Arial", 10, FontStyle.Bold);
         }
 
-        // Method to apply DataGridView styling
+        // DataGridView styling
         public static void ApplyDataGridViewStyling(DataGridView dataGridView)
         {
-            dataGridView.BackgroundColor = Color.WhiteSmoke;
+            dataGridView.BackgroundColor = Pewter;
             dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.Font = new Font("Arial", 10);
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Coral;
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = DarkBlue;
             dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
-            dataGridView.DefaultCellStyle.SelectionBackColor = Color.SkyBlue;
-            dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Yellow;
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.Black;
         }
 
-        // Method to apply ListBox styling
-        public static void ApplyListBoxStyling(ListBox listBox)
-        {
-            listBox.BackColor = Color.WhiteSmoke;
-            listBox.Font = new Font("Arial", 10);
-            listBox.ForeColor = Color.DarkSlateGray;
-        }
-
-        // Method to apply TextBox styling
+        // TextBox styling
         public static void ApplyTextBoxStyling(TextBox textBox)
         {
             textBox.BackColor = Color.White;
             textBox.Font = new Font("Arial", 10);
         }
 
-        // Method to apply ComboBox styling
+        // ComboBox styling
         public static void ApplyComboBoxStyling(ComboBox comboBox)
         {
-            comboBox.BackColor = Color.WhiteSmoke;
+            comboBox.BackColor = Pewter;
             comboBox.Font = new Font("Arial", 10);
         }
 
-        // Method to apply Label styling
+        // Label styling
         public static void ApplyLabelStyling(Label label)
         {
-            label.Font = new Font("Arial", 12, FontStyle.Bold);  // Bold font for labels
-            label.ForeColor = Color.DarkSlateGray;  // Dark gray color for labels
+            label.Font = new Font("Arial", 12, FontStyle.Bold);
+            label.ForeColor = DarkBlue;
         }
     }
 }

@@ -60,7 +60,7 @@
             Controls.Add(dataGridView);
             Controls.Add(btnBack);
             Name = "ViewPetsForm";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ViewPetsForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
